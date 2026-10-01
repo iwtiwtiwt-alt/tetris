@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Neon Tetris Arcade - 霓虹俄羅斯方塊</title>
+    <title>Modern Dark Tetris Arcade</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Noto+Sans+TC:wght@400;700&display=swap');
 
@@ -20,65 +21,55 @@
 
         body {
             font-family: 'Orbitron', 'Noto Sans TC', sans-serif;
-            background-color: #08090d;
-            color: #c5c6c7;
+            background-color: #090a0f;
+            color: #e2e8f0;
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* Neon Frame & Visual Depth */
-        .neon-box {
-            background: rgba(14, 18, 28, 0.9);
-            border: 1px solid rgba(69, 243, 255, 0.25);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(69, 243, 255, 0.05);
-            backdrop-filter: blur(10px);
+        /* Sleek Modern Dark Glassmorphism Styling */
+        .dark-box {
+            background: rgba(18, 20, 28, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8), inset 0 0 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
         }
 
-        .neon-border-cyan {
-            border-color: #45f3ff;
-            box-shadow: 0 0 15px rgba(69, 243, 255, 0.35), inset 0 0 10px rgba(69, 243, 255, 0.15);
+        .dark-border-glow {
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(255, 255, 255, 0.03);
         }
 
-        .neon-text-cyan {
-            color: #45f3ff;
-            text-shadow: 0 0 10px rgba(69, 243, 255, 0.8);
-        }
-
-        .neon-text-pink {
-            color: #ff2a74;
-            text-shadow: 0 0 10px rgba(255, 42, 116, 0.8);
-        }
-
-        .neon-text-yellow {
-            color: #ffe600;
-            text-shadow: 0 0 10px rgba(255, 230, 0, 0.8);
-        }
-
-        /* Arcade Buttons */
+        /* Arcade Glass Buttons */
         .arcade-btn {
-            background: linear-gradient(135deg, #181d2a 0%, #0d1017 100%);
-            border: 1px solid #45f3ff;
-            color: #45f3ff;
-            transition: all 0.1s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(30, 35, 48, 0.9) 0%, rgba(15, 18, 26, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #f1f5f9;
+            transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .arcade-btn:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(40, 48, 66, 0.9) 0%, rgba(20, 24, 35, 0.9) 100%);
         }
 
         .arcade-btn:active, .arcade-btn.active {
-            transform: translateY(2px);
-            background: #45f3ff;
-            color: #0b0c10;
-            box-shadow: 0 0 15px rgba(69, 243, 255, 0.9);
+            transform: translateY(2px) scale(0.97);
+            background: rgba(255, 255, 255, 0.95);
+            color: #090a0f;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
         }
 
-        .arcade-btn-pink {
-            border-color: #ff2a74;
-            color: #ff2a74;
+        .arcade-btn-primary {
+            border-color: rgba(0, 240, 240, 0.4);
+            color: #00f0f0;
         }
 
-        .arcade-btn-pink:active, .arcade-btn-pink.active {
-            background: #ff2a74;
-            color: #0b0c10;
-            box-shadow: 0 0 15px rgba(255, 42, 116, 0.9);
+        .arcade-btn-primary:active, .arcade-btn-primary.active {
+            background: #00f0f0;
+            color: #090a0f;
+            box-shadow: 0 0 20px rgba(0, 240, 240, 0.8);
         }
 
         /* Banner Animations */
@@ -90,7 +81,7 @@
         }
 
         .effect-popup {
-            animation: popupAnim 1.2s ease-out forwards;
+            animation: popupAnim 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             pointer-events: none;
         }
 
@@ -100,16 +91,19 @@
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #08090d; }
-        ::-webkit-scrollbar-thumb { background: #1f2833; border-radius: 3px; }
+        ::-webkit-scrollbar-track { background: #090a0f; }
+        ::-webkit-scrollbar-thumb { background: #1e2330; border-radius: 3px; }
     </style>
 </head>
 <body class="flex flex-col items-center justify-between p-2 md:p-4 min-h-screen">
 
+    <!-- Header Section -->
     <header class="w-full max-w-5xl flex justify-between items-center my-2 px-3">
         <div class="flex items-center space-x-3">
-            <i class="fa-solid fa-cubes text-3xl neon-text-cyan"></i>
-            <h1 class="text-2xl md:text-3xl font-black tracking-wider text-white italic">NEON <span class="neon-text-cyan">TETRIS</span></h1>
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                <i class="fa-solid fa-shapes text-white text-lg"></i>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-black tracking-wider text-white italic">DARK <span class="text-cyan-400">TETRIS</span></h1>
         </div>
         <div class="flex items-center space-x-2 md:space-x-3">
             <button id="soundToggleBtn" class="arcade-btn px-3 py-1.5 rounded-lg text-xs md:text-sm flex items-center space-x-2">
@@ -123,94 +117,90 @@
         </div>
     </header>
 
+    <!-- Main Game Board & Panels -->
     <main class="w-full max-w-5xl flex flex-col lg:flex-row items-center lg:items-start justify-center gap-4 my-auto">
 
-        <!-- Left Sidebar: Hold & Stats -->
+        <!-- Left Sidebar: Hold & Score Info -->
         <div class="w-full lg:w-44 flex flex-row lg:flex-col justify-between gap-3 order-2 lg:order-1">
-            <!-- Hold Block Container -->
-            <div class="neon-box rounded-xl p-3 flex-1 flex flex-col items-center">
-                <h2 class="text-xs font-bold text-gray-400 mb-2 tracking-widest uppercase">
-                    <i class="fa-solid fa-hand-holding mr-1 text-cyan-400"></i> HOLD
+            <div class="dark-box rounded-xl p-3 flex-1 flex flex-col items-center">
+                <h2 class="text-xs font-bold text-slate-400 mb-2 tracking-widest uppercase flex items-center">
+                    <i class="fa-solid fa-hand-holding mr-1 text-purple-400"></i> HOLD
                 </h2>
-                <div class="w-20 h-20 md:w-24 md:h-24 bg-black/50 rounded-lg flex items-center justify-center border border-gray-800">
+                <div class="w-20 h-20 md:w-24 md:h-24 bg-[#050508] rounded-lg flex items-center justify-center border border-white/5 shadow-inner">
                     <canvas id="holdCanvas" width="96" height="96"></canvas>
                 </div>
             </div>
 
-            <!-- Stats Box -->
-            <div class="neon-box rounded-xl p-3 flex-1 flex flex-col gap-2 text-center justify-center">
+            <div class="dark-box rounded-xl p-3 flex-1 flex flex-col gap-2 text-center justify-center">
                 <div>
-                    <div class="text-[10px] text-cyan-400 font-semibold tracking-wider">HIGH SCORE</div>
-                    <div id="highScoreText" class="text-base md:text-xl font-extrabold neon-text-yellow">0</div>
+                    <div class="text-[10px] text-slate-400 font-semibold tracking-wider">HIGH SCORE</div>
+                    <div id="highScoreText" class="text-base md:text-xl font-extrabold text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">0</div>
                 </div>
-                <hr class="border-gray-800 my-0.5">
+                <hr class="border-white/5 my-0.5">
                 <div>
-                    <div class="text-[10px] text-gray-400 tracking-wider">SCORE</div>
-                    <div id="scoreText" class="text-lg md:text-2xl font-black text-white">0</div>
+                    <div class="text-[10px] text-slate-400 tracking-wider">SCORE</div>
+                    <div id="scoreText" class="text-lg md:text-2xl font-black text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">0</div>
                 </div>
                 <div class="flex justify-around items-center pt-1">
                     <div>
-                        <div class="text-[10px] text-gray-400">LEVEL</div>
-                        <div id="levelText" class="text-sm md:text-base font-bold neon-text-cyan">1</div>
+                        <div class="text-[10px] text-slate-400">LEVEL</div>
+                        <div id="levelText" class="text-sm md:text-base font-bold text-cyan-400">1</div>
                     </div>
                     <div>
-                        <div class="text-[10px] text-gray-400">LINES</div>
-                        <div id="linesText" class="text-sm md:text-base font-bold neon-text-pink">0</div>
+                        <div class="text-[10px] text-slate-400">LINES</div>
+                        <div id="linesText" class="text-sm md:text-base font-bold text-emerald-400">0</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Center: Game Canvas -->
+        <!-- Center Stage: Canvas & Overlays -->
         <div class="relative order-1 lg:order-2 flex flex-col items-center">
             
-            <!-- Dynamic Effect Banner (T-Spin / Lines Clear) -->
             <div id="effectBanner" class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 hidden pointer-events-none text-center">
-                <div id="effectTitle" class="text-2xl md:text-3xl font-black neon-text-pink tracking-widest uppercase italic transform -rotate-3">T-SPIN DOUBLE!</div>
-                <div id="effectSub" class="text-sm font-bold text-yellow-300 tracking-wider mt-1">+1200 PTS</div>
+                <div id="effectTitle" class="text-2xl md:text-3xl font-black text-yellow-400 tracking-widest uppercase italic transform -rotate-3 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)]">T-SPIN DOUBLE!</div>
+                <div id="effectSub" class="text-sm font-bold text-white tracking-wider mt-1 drop-shadow-md">+1200 PTS</div>
             </div>
 
-            <!-- Main Canvas Box -->
-            <div class="relative neon-box p-2 rounded-2xl neon-border-cyan overflow-hidden shadow-2xl">
-                <canvas id="tetrisCanvas" width="300" height="600" class="rounded-lg bg-black/90 block"></canvas>
+            <div class="relative dark-box p-2 rounded-2xl dark-border-glow overflow-hidden shadow-2xl">
+                <canvas id="tetrisCanvas" width="300" height="600" class="rounded-lg bg-[#050508] block shadow-inner"></canvas>
 
                 <!-- Pause Overlay -->
-                <div id="pauseOverlay" class="absolute inset-0 bg-black/85 backdrop-blur-md flex flex-col items-center justify-center z-20 hidden">
-                    <i class="fa-solid fa-circle-pause text-5xl neon-text-cyan mb-3 animate-pulse"></i>
+                <div id="pauseOverlay" class="absolute inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center z-20 hidden">
+                    <i class="fa-solid fa-circle-pause text-5xl text-cyan-400 mb-3 animate-pulse"></i>
                     <h2 class="text-2xl font-black text-white tracking-widest mb-1">GAME PAUSED</h2>
-                    <p class="text-xs text-gray-400 mb-6">按下 P 或 ESC 鍵繼續遊戲</p>
-                    <button id="resumeBtn" class="arcade-btn px-6 py-2 rounded-xl text-xs font-bold">繼續遊戲</button>
+                    <p class="text-xs text-slate-400 mb-6">按下 P 或 ESC 鍵繼續遊戲</p>
+                    <button id="resumeBtn" class="arcade-btn arcade-btn-primary px-6 py-2 rounded-xl text-xs font-bold">繼續遊戲</button>
                 </div>
 
                 <!-- Game Over Overlay -->
                 <div id="gameOverOverlay" class="absolute inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center z-20 hidden">
-                    <i class="fa-solid fa-skull-crossbones text-5xl neon-text-pink mb-3 animate-bounce"></i>
+                    <i class="fa-solid fa-skull text-5xl text-red-500 mb-3 animate-bounce"></i>
                     <h2 class="text-3xl font-black text-white tracking-widest mb-1">GAME OVER</h2>
-                    <div id="newHighNotice" class="text-xs text-yellow-400 font-bold mb-3 hidden">🎉 刷新最高紀錄！</div>
+                    <div id="newHighNotice" class="text-xs text-amber-400 font-bold mb-3 hidden">🎉 刷新最高紀錄！</div>
                     <div class="text-center mb-6 space-y-1">
-                        <p class="text-xs text-gray-400">最終得分: <span id="finalScore" class="text-white font-bold text-sm">0</span></p>
-                        <p class="text-xs text-gray-400">總消除行數: <span id="finalLines" class="text-white font-bold text-sm">0</span></p>
+                        <p class="text-xs text-slate-400">最終得分: <span id="finalScore" class="text-white font-bold text-sm">0</span></p>
+                        <p class="text-xs text-slate-400">總消除行數: <span id="finalLines" class="text-white font-bold text-sm">0</span></p>
                     </div>
-                    <button id="restartBtn" class="arcade-btn arcade-btn-pink px-8 py-3 rounded-xl text-sm font-extrabold tracking-wider">
+                    <button id="restartBtn" class="arcade-btn arcade-btn-primary px-8 py-3 rounded-xl text-sm font-extrabold tracking-wider">
                         重新開始 <i class="fa-solid fa-rotate-right ml-2"></i>
                     </button>
                 </div>
 
-                <!-- Start Screen Overlay -->
-                <div id="startOverlay" class="absolute inset-0 bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center z-20">
-                    <div class="w-16 h-16 rounded-full bg-cyan-500/20 border-2 border-cyan-400 flex items-center justify-center mb-4 animate-bounce">
-                        <i class="fa-solid fa-play text-2xl neon-text-cyan ml-1"></i>
+                <!-- Start Overlay -->
+                <div id="startOverlay" class="absolute inset-0 bg-[#050508]/95 backdrop-blur-sm flex flex-col items-center justify-center z-20">
+                    <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(0,240,240,0.2)]">
+                        <i class="fa-solid fa-play text-2xl text-cyan-400 ml-1"></i>
                     </div>
-                    <h2 class="text-2xl font-black text-white tracking-widest mb-2">NEON TETRIS</h2>
-                    <p class="text-xs text-gray-300 mb-6 px-6 text-center">支援 T-Spin 技巧、Hold 暫存與 Ghost 影子落點</p>
-                    <button id="startBtn" class="arcade-btn px-8 py-3 rounded-xl text-sm font-extrabold tracking-wider">
+                    <h2 class="text-2xl font-black text-white tracking-widest mb-2">DARK TETRIS</h2>
+                    <p class="text-xs text-slate-400 mb-6 px-6 text-center max-w-xs">極簡純黑背景，保留經典鮮明方塊與完整街機規則</p>
+                    <button id="startBtn" class="arcade-btn arcade-btn-primary px-8 py-3 rounded-xl text-sm font-extrabold tracking-wider">
                         開始遊戲 START
                     </button>
                 </div>
             </div>
 
-            <!-- Desktop Keyboard Hints -->
-            <div class="hidden md:flex justify-between w-full mt-2 text-[10px] text-gray-500 px-1">
+            <div class="hidden md:flex justify-between w-full mt-2 text-[10px] text-slate-500 px-1">
                 <span>[P] 暫停</span>
                 <span>[C/Shift] Hold</span>
                 <span>[Space] 硬降</span>
@@ -219,24 +209,22 @@
             </div>
         </div>
 
-        <!-- Right Sidebar: Next Preview & Actions -->
+        <!-- Right Sidebar: Next Block & Controls -->
         <div class="w-full lg:w-44 flex flex-row lg:flex-col justify-between gap-3 order-3">
-            <!-- Next Block Container -->
-            <div class="neon-box rounded-xl p-3 flex-1 flex flex-col items-center">
-                <h2 class="text-xs font-bold text-gray-400 mb-2 tracking-widest uppercase">
-                    <i class="fa-solid fa-forward-step mr-1 text-pink-500"></i> NEXT
+            <div class="dark-box rounded-xl p-3 flex-1 flex flex-col items-center">
+                <h2 class="text-xs font-bold text-slate-400 mb-2 tracking-widest uppercase flex items-center">
+                    <i class="fa-solid fa-forward-step mr-1 text-cyan-400"></i> NEXT
                 </h2>
-                <div class="w-20 h-20 md:w-24 md:h-24 bg-black/50 rounded-lg flex items-center justify-center border border-gray-800">
+                <div class="w-20 h-20 md:w-24 md:h-24 bg-[#050508] rounded-lg flex items-center justify-center border border-white/5 shadow-inner">
                     <canvas id="nextCanvas" width="96" height="96"></canvas>
                 </div>
             </div>
 
-            <!-- Control Buttons Container -->
-            <div class="neon-box rounded-xl p-3 flex-1 flex flex-col justify-center gap-2">
+            <div class="dark-box rounded-xl p-3 flex-1 flex flex-col justify-center gap-2">
                 <button id="pauseGameBtn" class="arcade-btn w-full py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2">
                     <i class="fa-solid fa-pause"></i> 暫停 (P)
                 </button>
-                <button id="resetScoreBtn" class="arcade-btn arcade-btn-pink w-full py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2">
+                <button id="resetScoreBtn" class="arcade-btn w-full py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 text-red-400 hover:text-red-300">
                     <i class="fa-solid fa-trash-can"></i> 重置高分
                 </button>
             </div>
@@ -244,11 +232,11 @@
 
     </main>
 
+    <!-- Mobile Touch Controller -->
     <footer class="w-full max-w-md mt-2 mb-2 px-2">
         <div class="grid grid-cols-5 gap-1.5">
-            <!-- Row 1: Hold, Rotate CCW, Rotate CW, Hard Drop -->
             <button id="touchHold" class="arcade-btn h-12 rounded-xl text-xs font-bold flex flex-col items-center justify-center col-span-1 active:scale-95">
-                <i class="fa-solid fa-hand-holding text-cyan-400 text-sm"></i>
+                <i class="fa-solid fa-hand-holding text-purple-400 text-sm"></i>
                 <span class="text-[9px] mt-0.5">HOLD</span>
             </button>
             <button id="touchRotCCW" class="arcade-btn h-12 rounded-xl text-xs font-bold flex flex-col items-center justify-center col-span-1 active:scale-95">
@@ -259,12 +247,11 @@
                 <i class="fa-solid fa-rotate-right text-sm"></i>
                 <span class="text-[9px] mt-0.5">順旋</span>
             </button>
-            <button id="touchHardDrop" class="arcade-btn arcade-btn-pink h-12 rounded-xl text-xs font-bold flex flex-col items-center justify-center col-span-2 active:scale-95">
-                <i class="fa-solid fa-angles-down text-pink-400 text-base"></i>
+            <button id="touchHardDrop" class="arcade-btn arcade-btn-primary h-12 rounded-xl text-xs font-bold flex flex-col items-center justify-center col-span-2 active:scale-95">
+                <i class="fa-solid fa-angles-down text-cyan-400 text-base"></i>
                 <span class="text-[9px] font-extrabold mt-0.5">HARD DROP</span>
             </button>
 
-            <!-- Row 2: Left, Soft Drop, Right -->
             <button id="touchLeft" class="arcade-btn h-14 rounded-xl text-base font-bold flex items-center justify-center col-span-1 active:scale-95">
                 <i class="fa-solid fa-caret-left text-2xl"></i>
             </button>
@@ -278,42 +265,40 @@
         </div>
     </footer>
 
+    <!-- Help Modal -->
     <div id="helpModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="neon-box max-w-md w-full rounded-2xl p-5 border-cyan-400 relative">
-            <button id="closeHelpBtn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+        <div class="dark-box max-w-md w-full rounded-2xl p-5 border-white/20 relative">
+            <button id="closeHelpBtn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <h3 class="text-xl font-black text-white mb-4 flex items-center gap-2">
                 <i class="fa-solid fa-gamepad text-cyan-400"></i> 操作說明與快捷鍵
             </h3>
             
-            <div class="space-y-3 text-xs text-gray-300">
-                <div class="grid grid-cols-2 gap-2 bg-black/50 p-2.5 rounded-lg border border-gray-800">
+            <div class="space-y-3 text-xs text-slate-300">
+                <div class="grid grid-cols-2 gap-2 bg-[#050508] p-2.5 rounded-lg border border-white/10">
                     <div><span class="text-cyan-400 font-bold">← / →</span> : 左右移動</div>
                     <div><span class="text-cyan-400 font-bold">↑ / X</span> : 順時針旋轉</div>
                     <div><span class="text-cyan-400 font-bold">Z / Ctrl</span> : 逆時針旋轉</div>
                     <div><span class="text-cyan-400 font-bold">↓</span> : 軟降 (Soft Drop)</div>
-                    <div><span class="text-pink-400 font-bold">Space</span> : 硬降 (Hard Drop)</div>
-                    <div><span class="text-yellow-400 font-bold">C / Shift</span> : Hold 暫存換塊</div>
-                    <div class="col-span-2"><span class="text-gray-400 font-bold">P / ESC</span> : 暫停遊戲</div>
+                    <div><span class="text-emerald-400 font-bold">Space</span> : 硬降 (Hard Drop)</div>
+                    <div><span class="text-purple-400 font-bold">C / Shift</span> : Hold 暫存換塊</div>
+                    <div class="col-span-2"><span class="text-slate-400 font-bold">P / ESC</span> : 暫停遊戲</div>
                 </div>
 
-                <div class="border-t border-gray-800 pt-3">
-                    <h4 class="font-bold text-white mb-1">🌟 特殊加分技巧：T-Spin</h4>
-                    <p class="leading-relaxed text-gray-400">
-                        利用 T 型方塊（紫）旋轉卡入狹窄角隙中，當 3 個角落被牆壁或方塊包圍時觸發 T-Spin，獲得高額分數獎勵！
+                <div class="border-t border-white/10 pt-3">
+                    <h4 class="font-bold text-white mb-1">⚡ 特殊加分技巧：T-Spin</h4>
+                    <p class="leading-relaxed text-slate-400">
+                        利用 T 型方塊（紫色）旋轉卡入狹窄角隙中，當 3 個角落被牆壁或方塊包圍時觸發 T-Spin，獲得高額分數獎勵！
                     </p>
                 </div>
             </div>
 
-            <button id="confirmHelpBtn" class="arcade-btn w-full mt-5 py-2.5 rounded-xl font-bold text-sm">理解，開始遊戲！</button>
+            <button id="confirmHelpBtn" class="arcade-btn arcade-btn-primary w-full mt-5 py-2.5 rounded-xl font-bold text-sm">理解，開始遊戲！</button>
         </div>
     </div>
 
     <script>
-        // ====================================================================
-        // Web Audio API Synthesizer (Zero External Dependencies)
-        // ====================================================================
         class SoundEngine {
             constructor() {
                 this.ctx = null;
@@ -323,9 +308,7 @@
             init() {
                 if (!this.ctx) {
                     const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                    if (AudioCtx) {
-                        this.ctx = new AudioCtx();
-                    }
+                    if (AudioCtx) this.ctx = new AudioCtx();
                 }
                 if (this.ctx && this.ctx.state === 'suspended') {
                     this.ctx.resume();
@@ -352,13 +335,11 @@
 
                     osc.start();
                     osc.stop(this.ctx.currentTime + duration);
-                } catch (e) {
-                    // Audio context errors handled safely
-                }
+                } catch (e) {}
             }
 
             playMove() { this.playTone(280, 'triangle', 0.04, 0.03); }
-            playRotate() { this.playTone(420, 'sine', 0.08, 0.06); }
+            playRotate() { this.playTone(440, 'sine', 0.08, 0.05); }
             playSoftDrop() { this.playTone(180, 'triangle', 0.03, 0.03); }
 
             playHardDrop() {
@@ -370,9 +351,9 @@
                     const gain = this.ctx.createGain();
                     osc.type = 'sawtooth';
                     osc.frequency.setValueAtTime(200, this.ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(30, this.ctx.currentTime + 0.12);
+                    osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.12);
 
-                    gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+                    gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
                     gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
 
                     osc.connect(gain);
@@ -382,14 +363,14 @@
                 } catch (e) {}
             }
 
-            playHold() { this.playTone(550, 'sine', 0.1, 0.08); }
+            playHold() { this.playTone(580, 'sine', 0.1, 0.06); }
 
             playClear(lines) {
                 if (!this.enabled) return;
-                const baseFreqs = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                const baseFreqs = [523.25, 659.25, 783.99, 1046.50];
                 for (let i = 0; i < Math.min(lines, 4); i++) {
                     setTimeout(() => {
-                        this.playTone(baseFreqs[i], 'square', 0.12, 0.08);
+                        this.playTone(baseFreqs[i], 'square', 0.12, 0.07);
                     }, i * 60);
                 }
             }
@@ -399,17 +380,17 @@
                 const notes = [440, 554.37, 659.25, 880];
                 notes.forEach((freq, idx) => {
                     setTimeout(() => {
-                        this.playTone(freq, 'sine', 0.15, 0.1);
+                        this.playTone(freq, 'sine', 0.15, 0.08);
                     }, idx * 50);
                 });
             }
 
             playGameOver() {
                 if (!this.enabled) return;
-                const notes = [380, 320, 260, 200];
+                const notes = [360, 300, 240, 180];
                 notes.forEach((freq, idx) => {
                     setTimeout(() => {
-                        this.playTone(freq, 'sawtooth', 0.2, 0.1);
+                        this.playTone(freq, 'sawtooth', 0.2, 0.08);
                     }, idx * 120);
                 });
             }
@@ -417,13 +398,11 @@
 
         const audio = new SoundEngine();
 
-        // ====================================================================
-        // Constants, SRS Wall Kick Tables & Tetromino Definitions
-        // ====================================================================
         const COLS = 10;
         const ROWS = 20;
         const BLOCK_SIZE = 30;
 
+        // Vivid Classic High-Contrast Tetromino Color Palette
         const TETROMINOES = {
             'I': {
                 shape: [
@@ -432,8 +411,8 @@
                     [0, 0, 0, 0],
                     [0, 0, 0, 0]
                 ],
-                color: '#00f0ff',
-                shadow: 'rgba(0, 240, 255, 0.8)'
+                color: '#00f0f0', // Cyan
+                shadow: 'rgba(0, 240, 240, 0.9)'
             },
             'J': {
                 shape: [
@@ -441,8 +420,8 @@
                     [1, 1, 1],
                     [0, 0, 0]
                 ],
-                color: '#2b52ff',
-                shadow: 'rgba(43, 82, 255, 0.8)'
+                color: '#0000f0', // Blue
+                shadow: 'rgba(0, 0, 240, 0.9)'
             },
             'L': {
                 shape: [
@@ -450,16 +429,16 @@
                     [1, 1, 1],
                     [0, 0, 0]
                 ],
-                color: '#ffaa00',
-                shadow: 'rgba(255, 170, 0, 0.8)'
+                color: '#ffA500', // Orange
+                shadow: 'rgba(255, 165, 0, 0.9)'
             },
             'O': {
                 shape: [
                     [1, 1],
                     [1, 1]
                 ],
-                color: '#ffe600',
-                shadow: 'rgba(255, 230, 0, 0.8)'
+                color: '#ffff00', // Yellow
+                shadow: 'rgba(255, 255, 0, 0.9)'
             },
             'S': {
                 shape: [
@@ -467,8 +446,8 @@
                     [1, 1, 0],
                     [0, 0, 0]
                 ],
-                color: '#00ff66',
-                shadow: 'rgba(0, 255, 102, 0.8)'
+                color: '#00f000', // Green
+                shadow: 'rgba(0, 240, 0, 0.9)'
             },
             'T': {
                 shape: [
@@ -476,8 +455,8 @@
                     [1, 1, 1],
                     [0, 0, 0]
                 ],
-                color: '#a000ff',
-                shadow: 'rgba(160, 0, 255, 0.8)'
+                color: '#a000f0', // Purple
+                shadow: 'rgba(160, 0, 240, 0.9)'
             },
             'Z': {
                 shape: [
@@ -485,24 +464,11 @@
                     [0, 1, 1],
                     [0, 0, 0]
                 ],
-                color: '#ff0055',
-                shadow: 'rgba(255, 0, 85, 0.8)'
+                color: '#f00000', // Red
+                shadow: 'rgba(240, 0, 0, 0.9)'
             }
         };
 
-        // Standard SRS Kick Offsets
-        const JLSTZ_KICK_OFFSET = [
-            [[0,0], [-1,0], [-1,1], [0,-2], [-1,-2]], // 0 -> R
-            [[0,0], [1,0], [1,-1], [0,2], [1,2]],     // R -> 0
-            [[0,0], [1,0], [1,1], [0,-2], [1,-2]],     // R -> 2
-            [[0,0], [-1,0], [-1,-1], [0,2], [-1,2]],   // 2 -> R
-            [[0,0], [1,0], [1,-1], [0,2], [1,2]],     // 2 -> L
-            [[0,0], [-1,0], [-1,1], [0,-2], [-1,-2]], // L -> 2
-            [[0,0], [-1,0], [-1,-1], [0,2], [-1,2]],   // L -> 0
-            [[0,0], [1,0], [1,1], [0,-2], [1,-2]]      // 0 -> L
-        ];
-
-        // Particle Class for Line Clear Effects
         class Particle {
             constructor(x, y, color) {
                 this.x = x;
@@ -518,7 +484,7 @@
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                this.vy += 0.15; // Gravity
+                this.vy += 0.15;
                 this.alpha -= this.decay;
             }
 
@@ -527,7 +493,7 @@
                 ctx.globalAlpha = Math.max(0, this.alpha);
                 ctx.fillStyle = this.color;
                 ctx.shadowColor = this.color;
-                ctx.shadowBlur = 4;
+                ctx.shadowBlur = 6;
                 ctx.fillRect(this.x, this.y, this.size, this.size);
                 ctx.restore();
             }
@@ -535,7 +501,6 @@
 
         class TetrisGame {
             constructor() {
-                // DOM References
                 this.canvas = document.getElementById('tetrisCanvas');
                 this.ctx = this.canvas.getContext('2d');
                 this.nextCanvas = document.getElementById('nextCanvas');
@@ -555,10 +520,9 @@
                 this.effectTitle = document.getElementById('effectTitle');
                 this.effectSub = document.getElementById('effectSub');
 
-                // Game Core State
                 this.board = this.createBoard();
                 this.score = 0;
-                this.highScore = parseInt(localStorage.getItem('tetris_neon_highscore')) || 0;
+                this.highScore = parseInt(localStorage.getItem('tetris_dark_highscore')) || 0;
                 this.lines = 0;
                 this.level = 1;
                 this.combo = -1;
@@ -604,8 +568,7 @@
                     color: template.color,
                     shadow: template.shadow,
                     x: Math.floor((COLS - template.shape[0].length) / 2),
-                    y: type === 'I' ? -1 : 0,
-                    rotationState: 0 // 0: default, 1: 90 deg CW, 2: 180 deg, 3: 270 deg
+                    y: type === 'I' ? -1 : 0
                 };
             }
 
@@ -702,7 +665,6 @@
 
                 this.piece.matrix = rotated;
 
-                // Simple SRS Wall Kick offset test
                 const kickOffsets = [
                     {x: 0, y: 0}, {x: 1, y: 0}, {x: -1, y: 0},
                     {x: 0, y: -1}, {x: 2, y: 0}, {x: -2, y: 0}
@@ -791,8 +753,7 @@
                         color: template.color,
                         shadow: template.shadow,
                         x: Math.floor((COLS - template.shape[0].length) / 2),
-                        y: tempType === 'I' ? -1 : 0,
-                        rotationState: 0
+                        y: tempType === 'I' ? -1 : 0
                     };
                 }
 
@@ -800,7 +761,6 @@
                 this.draw();
             }
 
-            // T-Spin 3-Corner Detector Algorithm
             checkTSpin() {
                 if (!this.piece || this.piece.type !== 'T' || !this.lastActionWasRotate) {
                     return false;
@@ -861,7 +821,7 @@
 
                 for (let r = ROWS - 1; r >= 0; r--) {
                     if (this.board[r].every(cell => cell !== 0)) {
-                        this.spawnParticles(r, this.board[r][0] || '#ffffff');
+                        this.spawnParticles(r, this.board[r][0] || '#00f0f0');
                         this.board.splice(r, 1);
                         this.board.unshift(Array(COLS).fill(0));
                         linesCleared++;
@@ -949,16 +909,19 @@
 
                 ctx.save();
                 ctx.shadowColor = shadowColor || color;
-                ctx.shadowBlur = 8;
+                ctx.shadowBlur = 10;
 
+                // Vivid, High-contrast gradient fill
                 const grad = ctx.createLinearGradient(px, py, px + BLOCK_SIZE, py + BLOCK_SIZE);
                 grad.addColorStop(0, color);
-                grad.addColorStop(1, '#08090d');
+                grad.addColorStop(0.85, color);
+                grad.addColorStop(1, '#000000');
 
                 ctx.fillStyle = grad;
                 ctx.fillRect(px + 1, py + 1, BLOCK_SIZE - 2, BLOCK_SIZE - 2);
 
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+                // High-contrast bright highlight inner stroke
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
                 ctx.lineWidth = 1;
                 ctx.strokeRect(px + 2, py + 2, BLOCK_SIZE - 4, BLOCK_SIZE - 4);
 
@@ -966,10 +929,11 @@
             }
 
             draw() {
-                this.ctx.fillStyle = '#050608';
+                // Pitch-black canvas grid background
+                this.ctx.fillStyle = '#050508';
                 this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-                // Grid lines
+                // Subtle dark grid lines
                 this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
                 this.ctx.lineWidth = 1;
                 for (let r = 0; r < ROWS; r++) {
@@ -1015,7 +979,7 @@
                     }
                 }
 
-                // Update & Render Particle FX
+                // Render Particles
                 for (let i = this.particles.length - 1; i >= 0; i--) {
                     const p = this.particles[i];
                     p.update();
@@ -1027,7 +991,7 @@
             }
 
             drawPreview(ctx, canvas, piece) {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+                ctx.fillStyle = '#050508';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                 if (!piece) return;
@@ -1042,7 +1006,7 @@
 
                 ctx.save();
                 ctx.shadowColor = shadow;
-                ctx.shadowBlur = 6;
+                ctx.shadowBlur = 8;
 
                 for (let r = 0; r < m.length; r++) {
                     for (let c = 0; c < m[r].length; c++) {
@@ -1103,7 +1067,7 @@
                 const newHighNotice = document.getElementById('newHighNotice');
                 if (this.score > this.highScore) {
                     this.highScore = this.score;
-                    localStorage.setItem('tetris_neon_highscore', this.highScore);
+                    localStorage.setItem('tetris_dark_highscore', this.highScore);
                     newHighNotice.classList.remove('hidden');
                 } else {
                     newHighNotice.classList.add('hidden');
@@ -1124,7 +1088,7 @@
 
             resetHighScore() {
                 this.highScore = 0;
-                localStorage.removeItem('tetris_neon_highscore');
+                localStorage.removeItem('tetris_dark_highscore');
                 this.updateUI();
             }
         }
@@ -1132,7 +1096,6 @@
         window.onload = () => {
             const game = new TetrisGame();
 
-            // Keyboard listeners
             document.addEventListener('keydown', (e) => {
                 if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) {
                     e.preventDefault();
@@ -1158,7 +1121,6 @@
                 }
             });
 
-            // Mobile touch event bindings
             const bindTouch = (id, action) => {
                 const btn = document.getElementById(id);
                 if (!btn) return;
@@ -1183,13 +1145,11 @@
             bindTouch('touchHardDrop', () => game.hardDrop());
             bindTouch('touchHold', () => game.hold());
 
-            // Button controls
             document.getElementById('startBtn').addEventListener('click', () => game.start());
             document.getElementById('restartBtn').addEventListener('click', () => game.start());
             document.getElementById('resumeBtn').addEventListener('click', () => game.resume());
             document.getElementById('pauseGameBtn').addEventListener('click', () => game.togglePause());
 
-            // Audio Toggle
             const soundBtn = document.getElementById('soundToggleBtn');
             const soundIcon = document.getElementById('soundIcon');
             const soundStatusText = document.getElementById('soundStatusText');
@@ -1199,20 +1159,18 @@
                 if (audio.enabled) {
                     soundIcon.className = 'fa-solid fa-volume-high';
                     soundStatusText.textContent = '音效 ON';
-                    soundBtn.classList.remove('arcade-btn-pink');
+                    soundBtn.classList.remove('arcade-btn-primary');
                 } else {
                     soundIcon.className = 'fa-solid fa-volume-xmark';
                     soundStatusText.textContent = '音效 OFF';
-                    soundBtn.classList.add('arcade-btn-pink');
+                    soundBtn.classList.add('arcade-btn-primary');
                 }
             });
 
-            // Score reset
             document.getElementById('resetScoreBtn').addEventListener('click', () => {
                 game.resetHighScore();
             });
 
-            // Help Modal
             const helpModal = document.getElementById('helpModal');
             document.getElementById('helpBtn').addEventListener('click', () => helpModal.classList.remove('hidden'));
             document.getElementById('closeHelpBtn').addEventListener('click', () => helpModal.classList.add('hidden'));
